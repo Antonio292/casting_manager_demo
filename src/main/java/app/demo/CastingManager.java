@@ -9,34 +9,62 @@ import java.util.Scanner;
 @Slf4j
 @ToString
 public class CastingManager {
-    static String idToFind = "";
-    static String id = "";
-    static String newStatus = "";
+    static Casting casting = new Casting();
     static Scanner scanner = new Scanner(System.in);
     static Map<String, Casting> castings = new HashMap<>();
 
     public static void main(String[] args) {
-        int choice = 0;
+        byte choice = 0;
         boolean run = true;
         while (run) {
             showMenu();
-            choice = scanner.nextInt();
+            choice = scanner.nextByte();
             switch (choice) {
                 case 1 -> {
                     registerCasting(buildCasting());
                 }
                 case 2 -> {
+                    boolean runCasting = true;
+                    byte choiceCasting = 0;
                     findCasting();
-
+                    while (runCasting) {
+                        showCastingMenu();
+                        choiceCasting = scanner.nextByte();
+                        switch (choiceCasting) {
+                            case 1 -> {
+                                casting.registerParticipant(buildParticipant());
+                            }
+                            case 2 -> {
+                                acceptNewStatus();
+                                casting.updateStatus(acceptNewStatus());
+                            }
+                            case 3 -> {
+                                Casting.showParticipants(casting);
+                            }
+                            case 4 -> {
+                                runCasting = false;
+                                System.out.println("You are exiting casting menu");
+                                log.info("Quit the casting menu");
+                            }
+                            default -> {
+                                System.out.println("Input is incorrect");
+                                log.warn("attempt to incorrect Casting menu input");
+                            }
+                        }
+                    }
                 }
                 case 3 -> {
                             showCastings();
                 }
                 case 4 -> {
                     run = false;
+                    System.out.println("You are exiting the program");
                     log.info("Quit the program");
                 }
-
+                default -> {
+                    System.out.println("Input is incorrect");
+                    log.warn("attempt to incorrect Main menu input");
+                }
             }
 
         }
@@ -52,7 +80,6 @@ public class CastingManager {
 
     public static Casting buildCasting() {
         scanner.nextLine();
-        Casting casting = new Casting();
 
         System.out.println("Enter Casting Id: ");
         String id = scanner.nextLine();
@@ -82,7 +109,7 @@ public class CastingManager {
     public static void findCasting() {
         scanner.nextLine();
         System.out.println("Enter casting Id: ");
-        idToFind = scanner.nextLine();
+        String idToFind = scanner.nextLine();
         if (castings.containsKey(idToFind)){
             System.out.println(castings.get(idToFind));
         }
@@ -106,13 +133,16 @@ public class CastingManager {
         return participant;
     }
 
-    private static void gettingNewStatus() {
+    private static StatusUpdateInfo acceptNewStatus() {
+        StatusUpdateInfo statusUpdateInfo = new StatusUpdateInfo();
         scanner.nextLine();
         System.out.println("Enter Participant Id: ");
         id = scanner.nextLine();
+        statusUpdateInfo.setId(id);
         System.out.println("Enter new status for this Participant: ");
         newStatus = scanner.nextLine();
-
+        statusUpdateInfo.setNewStatus(newStatus);
+        return statusUpdateInfo;
     }
 
     private static void showCastings() {
@@ -121,4 +151,10 @@ public class CastingManager {
         }
     }
 
+    public static void showCastingMenu() {
+        System.out.println("1. Add participant");
+        System.out.println("2. Change participant status");
+        System.out.println("3. View participants");
+        System.out.println("4. Quit \n");
+    }
 }

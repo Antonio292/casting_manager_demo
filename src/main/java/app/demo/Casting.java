@@ -1,6 +1,7 @@
 package app.demo;
 
 
+import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
@@ -9,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Slf4j
+@Getter
 @ToString
 public class Casting {
     private String id;
@@ -17,9 +19,6 @@ public class Casting {
     private String location;
     private List<Participant> participants = new ArrayList<>();
 
-    public String getId() {
-        return id;
-    }
 
     public void setId(String id) {
         if ((id == null) || (id.isEmpty())) {
@@ -32,10 +31,6 @@ public class Casting {
         }
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         if ((name == null) || (name.isEmpty())) {
             System.out.println("You enter incorrect Casting Name!");
@@ -43,12 +38,8 @@ public class Casting {
             log.warn("attempt to enter incorrect Casting Name");
         } else {
             this.name = name;
-            log.info("Casting name was added");
+            log.info("Casting name was set");
         }
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public void setDescription(String description) {
@@ -60,10 +51,6 @@ public class Casting {
             this.description = description;
             log.info("Casting description was added");
         }
-    }
-
-    public String getLocation() {
-        return location;
     }
 
     public void setLocation(String location) {
@@ -79,18 +66,19 @@ public class Casting {
 
     public void registerParticipant(Participant participant) {
         participants.add(participant);
+        System.out.println("New participant was added");
         log.info("new participant was added");
     }
 
-    public void updateStatus(String newStatus, String id) {
+    public void updateStatus(StatusUpdateInfo status) {
         Participant participant1 = null;
         for (Participant participant : participants) {
             if (participant.getId().equals(id)) {
                 participant1 = participant;
             }
         }
-        if (newStatus != null && !newStatus.isEmpty()) {
-            participant1.setStatus(newStatus);
+        if (status.getNewStatus() != null && !status.getNewStatus().isEmpty()) {
+            participant1.setStatus(status.getNewStatus());
             System.out.println("Status was changed");
             log.info("status was changed");
         }

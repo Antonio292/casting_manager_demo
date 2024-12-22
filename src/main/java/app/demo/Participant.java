@@ -1,22 +1,20 @@
 package app.demo;
 
+import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 
 
 
-@ToString
 @Slf4j
+@Getter
+@ToString
 public class Participant {
     private String id;
     private String name;
     private String status;
 
-
-    public String getId() {
-        return id;
-    }
 
     public void setId(String id) {
         if ((id == null) || (id.isEmpty())) {
@@ -27,10 +25,6 @@ public class Participant {
             this.id = id;
             log.info("Participant id was added");
         }
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {
@@ -44,10 +38,6 @@ public class Participant {
         }
     }
 
-    public String getStatus() {
-        return status;
-    }
-
     public void setStatus(String status) {
         if ((status == null) || (status.isEmpty())) {
             System.out.println("You enter incorrect Participant Status!");
@@ -58,6 +48,5 @@ public class Participant {
             log.info("Participant status was added");
         }
     }
-
 
 }
