@@ -137,10 +137,10 @@ public class CastingManager {
         StatusUpdateInfo statusUpdateInfo = new StatusUpdateInfo();
         scanner.nextLine();
         System.out.println("Enter Participant Id: ");
-        id = scanner.nextLine();
+        String id = scanner.nextLine();
         statusUpdateInfo.setId(id);
         System.out.println("Enter new status for this Participant: ");
-        newStatus = scanner.nextLine();
+        String newStatus = scanner.nextLine();
         statusUpdateInfo.setNewStatus(newStatus);
         return statusUpdateInfo;
     }
