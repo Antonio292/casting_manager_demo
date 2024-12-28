@@ -18,34 +18,34 @@ public class Participant {
 
     public void setId(String id) {
         if ((id == null) || (id.isEmpty())) {
-            System.out.println("You enter incorrect  Participant Id!");
-            log.warn("attempt to enter incorrect Participant id");
+            System.out.println("Participant id cannot be empty");
+            log.warn("Participant id cannot be empty");
             //            throw new IllegalArgumentException("You enter incorrect Id!");
         } else {
             this.id = id;
-            log.info("Participant id was added");
+            log.info("Participant id was set");
         }
     }
 
     public void setName(String name) {
         if ((name == null) || (name.isEmpty())) {
-            System.out.println("You enter incorrect Participant Name!");
-            log.warn("attempt to enter incorrect Participant Name");
+            System.out.println("Participant name cannot be empty");
+            log.warn("Participant name cannot be empty");
             //            throw new IllegalArgumentException("You enter incorrect Name!");
         } else {
             this.name = name;
-            log.info("Participant name was added");
+            log.info("Participant name was set");
         }
     }
 
     public void setStatus(String status) {
         if ((status == null) || (status.isEmpty())) {
-            System.out.println("You enter incorrect Participant Status!");
-            log.warn("attempt to enter incorrect Participant Status");
+            System.out.println("Participant status cannot be empty");
+            log.warn("Participant status cannot be empty");
             //            throw new IllegalArgumentException("You enter incorrect Status!");
         } else {
             this.status = status;
-            log.info("Participant status was added");
+            log.info("Participant status was set");
         }
     }
 

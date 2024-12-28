@@ -39,7 +39,7 @@ public class CastingManager {
                                 casting.updateStatus(acceptNewStatus());
                             }
                             case 3 -> {
-                                Casting.showParticipants(casting);
+                                casting.showParticipants();
                             }
                             case 4 -> {
                                 runCasting = false;
