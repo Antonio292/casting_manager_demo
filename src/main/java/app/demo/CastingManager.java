@@ -6,10 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
 @Slf4j
 @ToString
 public class CastingManager {
-    static Casting casting = new Casting();
     static Scanner scanner = new Scanner(System.in);
     static Map<String, Casting> castings = new HashMap<>();
 
@@ -21,22 +21,25 @@ public class CastingManager {
             choice = scanner.nextByte();
             switch (choice) {
                 case 1 -> {
-                    registerCasting(buildCasting());
+                    Casting casting = buildCasting();
+                    registerCasting(casting);
                 }
                 case 2 -> {
                     boolean runCasting = true;
-                    byte choiceCasting = 0;
-                    findCasting();
+                    byte choiceCasting;
+                    Casting casting = findCasting();
+                    // if casting == null
                     while (runCasting) {
                         showCastingMenu();
                         choiceCasting = scanner.nextByte();
                         switch (choiceCasting) {
                             case 1 -> {
-                                casting.registerParticipant(buildParticipant());
+                                Participant participant = buildParticipant();
+                                casting.registerParticipant(participant);
                             }
                             case 2 -> {
-                                acceptNewStatus();
-                                casting.updateStatus(acceptNewStatus());
+                                StatusUpdateInfo statusUpdateInfo = acceptNewStatus();
+                                casting.updateStatus(statusUpdateInfo);
                             }
                             case 3 -> {
                                 casting.showParticipants();
@@ -54,7 +57,7 @@ public class CastingManager {
                     }
                 }
                 case 3 -> {
-                            showCastings();
+                    showCastings();
                 }
                 case 4 -> {
                     run = false;
@@ -79,6 +82,7 @@ public class CastingManager {
     }
 
     public static Casting buildCasting() {
+        Casting casting = new Casting();
         scanner.nextLine();
 
         System.out.println("Enter Casting Id: ");
@@ -101,19 +105,21 @@ public class CastingManager {
     }
 
     public static void registerCasting(Casting casting) {
-        castings.put(casting.getId(),casting);
+        castings.put(casting.getId(), casting);
         System.out.println("Casting was added");
         log.info("Casting was added");
     }
 
-    public static void findCasting() {
+    public static Casting findCasting() {
         scanner.nextLine();
         System.out.println("Enter casting Id: ");
         String idToFind = scanner.nextLine();
-        if (castings.containsKey(idToFind)){
-            System.out.println(castings.get(idToFind));
-        }
+
+        Casting casting = castings.get(idToFind);
+        System.out.println(casting);
         log.info("attempt find Casting");
+
+        return casting;
     }
 
     private static Participant buildParticipant() {

@@ -21,20 +21,20 @@ public class Casting {
 
     public void setId(String id) {
         if ((id == null) || (id.isEmpty())) {
-            System.out.println("You enter incorrect Casting Id!");// именить сообщение*
+            System.out.println("Casting Id cannot be empty!");
 //            throw new IllegalArgumentException("You enter incorrect Id!");
-            log.warn("attempt to enter incorrect Casting id");
+            log.warn("Casting Id cannot be empty");
         } else {
             this.id = id;
-            log.info("Casting id was added");
+            log.info("Casting id was set");
         }
     }
 
     public void setName(String name) {
         if ((name == null) || (name.isEmpty())) {
-            System.out.println("You enter incorrect Casting Name!");
+            System.out.println("Casting Name cannot be empty!");
 //            throw new IllegalArgumentException("You enter incorrect Name!");
-            log.warn("attempt to enter incorrect Casting Name");
+            log.warn("Casting Name cannot be empty");
         } else {
             this.name = name;
             log.info("Casting name was set");
@@ -43,23 +43,23 @@ public class Casting {
 
     public void setDescription(String description) {
         if ((description == null) || (description.isEmpty())) {
-            System.out.println("You enter incorrect Casting description!");
+            System.out.println("Casting description cannot be empty!");
 //            throw new IllegalArgumentException("You enter incorrect Name!");
-            log.warn("attempt to enter incorrect Casting description");
+            log.warn("Casting description cannot be empty");
         } else {
             this.description = description;
-            log.info("Casting description was added");
+            log.info("Casting description was set");
         }
     }
 
     public void setLocation(String location) {
         if ((location == null) || (location.isEmpty())) {
-            System.out.println("You enter incorrect Casting location!");
+            System.out.println("Casting location cannot be empty!");
 //            throw new IllegalArgumentException("You enter incorrect Name!");
-            log.warn("attempt to enter incorrect Casting location");
+            log.warn("Casting location cannot be empty");
         } else {
             this.location = location;
-            log.info("Casting location was added");
+            log.info("Casting location was set");
         }
     }
 
